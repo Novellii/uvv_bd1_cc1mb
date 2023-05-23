@@ -1,16 +1,16 @@
-# 2.0 Arquivo SQL Power Architect e PDF:
-## 2.1 Arquivo SQL Power Architect:
+## 2.0 Arquivo SQL Power Architect e PDF:
+### 2.1 Arquivo SQL Power Architect:
 Como principal arquivo aqui guardado, você receberá informações da replicação exata do Projeto de Banco de Dados 
 Lojas UVV, o mesmo que foi utilizado em minha primeira avaliação bimestral. O arquivo poderá ser aberto em um 
 programa como SQL Power Architect, já que foi neste mesmo que eu criei-o, abrindo você poderá vizualizar 
 comentários sobre cada coluna e tabela criada.
-## 2.2 Arquivo em PDF:
+### 2.2 Arquivo em PDF:
 Também foi realizado a exportação do arquivo Power Architect como PDF para a melhor vizualização de usuário que
 não possuem um programa de leitura de arquivo .architect. Logo em seguida diversas questões discurssivas foram
 realizadas sobre o tal projeto lógico, que graças a consulta de diversos sites e discurssões entre alunos, alunos
 estes que serão citados mais afrente, as questões foram cumpridas.
-# 3.0 Script SQL implementado:
-## 3.1 Implementação no PostgreSQL:
+## 3.0 Script SQL implementado:
+### 3.1 Implementação no PostgreSQL:
 Mesmo sendo um SGBD mais difícil e avançado de ser implementado, principalmente pelo fato de possuir uma alta
 gama de recursos avançados que permitem consultas complexas, o Banco de Dados está inicialmente implementado
 aqui, graças a ferramenta de exportação do Power Architect que facilitou o trabalho intensamente. Abrindo o

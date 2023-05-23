@@ -12,6 +12,7 @@ o *"sicp-abrantes-study-guide"* do próprio professor.
 Caso haja uma confusão sobre o que são as tais "Questões discursivas" que logo serão citadas, fique
 em mente que este repositório é em relação a uma atividade, e essas questões apenas o usuário *abrantesasf*
 poderá entender, já que foi feito um relatório da atividade, tal relatório que você está lendo agora.
+
 Inicialmente o professor nos pediu para realizarmos um estudo sobre Git, Github e a Linguagem Markdown,
 e então diversos tutoriais foram pesquisados por minha parte, incluindo a leitura em PT-BR do livro
 PROGIT, disponibilizado no [site oficial do Git](https://git-scm.com/book/pt-br/v2). 

@@ -1,30 +1,41 @@
 -- Derruba outras databases nomeadas de UVV caso tenha alguma. --
 
-DROP database IF EXISTS uvv;
+DROP DATABASE IF EXISTS uvv;
 
 -- Derruba outros usuários com nomes de Pedro caso exista algum. --
 
-DROP USER IF EXISTS Pedro;
+DROP USER IF EXISTS pedro;
 
--- Cria um usuário Pedro com a permissão de criar Banco de Dados. --
+-- Cria um usuário Pedro com a permissão de criar Banco de Dados, com a senha 123. --
 
-CREATE USER Pedro CREATEDB INHERIT;
+CREATE USER pedro WITH 
+            CREATEDB
+            INHERIT 
+            LOGIN 
+            PASSWORD '123';
 
 -- Cria o Banco de Dados UVV com o proprietário Pedro, conforme as especificações do professor. -- 
 
-CREATE database uvv
-       owner Pedro
+CREATE DATABASE uvv WITH
+       owner pedro
        TEMPLATE template0
        encoding 'UTF8'
        lc_collate 'pt_BR.UTF-8'
        lc_ctype 'pt_BR.UTF-8'
        allow_connections true;
 
-\c uvv;
+-- Conexão ao banco de dados UVV com o usuário Pedro e a Senha 123 --
+     
+\connect "dbname=uvv user=pedro password=123";
 
 -- Cria o esquema lojas, que irá armazenar todas as tabelas necessitadas. --
 
-CREATE SCHEMA lojas AUTHORIZATION Pedro;
+CREATE SCHEMA lojas AUTHORIZATION pedro;
+
+-- Configura o schema, conforme as informações do professor. --
+
+ALTER USER pedro
+SET SEARCH_PATH TO lojas, "$user", public;
 
 -- Cria a tabela produtos, a partir do banco de dados uvv e o esquema lojas, com cometários. --
 
@@ -135,7 +146,7 @@ CREATE TABLE    envios (
                 cliente_id                NUMERIC(38)  NOT NULL check (cliente_id > 0),
                 endereco_entrega          VARCHAR(512) NOT NULL,
                 status                    VARCHAR(15)  NOT NULL CHECK (status in ('CRIADO','ENVIADO', 'TRANSITO', 'ENTREGUE')),
-                CONSTRAINT pk_envio_id    PRIMARY KEY                 (envio_id)
+                CONSTRAINT pk_envio_id    PRIMARY KEY  (envio_id)
 );
 
 -- Comentários sobre as colunas e a tabela envios --
@@ -155,7 +166,7 @@ CREATE TABLE    pedidos (
                 cliente_id                NUMERIC(38) NOT NULL check (cliente_id > 0),
                 status                    VARCHAR(15) NOT NULL CHECK (status in ('CANCELADO','COMPLETO','ABERTO','PAGO','REEMBOLSADO','ENVIADO')),
                 loja_id                   NUMERIC(38) NOT NULL check (loja_id > 0),
-                CONSTRAINT pk_pedido_id   PRIMARY KEY                (pedido_id)
+                CONSTRAINT pk_pedido_id   PRIMARY KEY (pedido_id)
 );
 
 
@@ -177,7 +188,7 @@ CREATE TABLE    pedidos_itens (
                 preco_unitario                 NUMERIC(10,2) NOT NULL check (preco_unitario > 0),
                 quantidade                     NUMERIC(38)   NOT NULL check (quantidade > 0),
                 envio_id                       NUMERIC(38)            check (envio_id > 0),
-                CONSTRAINT pk_pedidoproduto_id PRIMARY KEY                  (pedido_id, produto_id)
+                CONSTRAINT pk_pedidoproduto_id PRIMARY KEY   (pedido_id, produto_id)
 );
 
 -- Comentários sobre as colunas e a tabela pedidos_itens --
@@ -193,8 +204,8 @@ COMMENT ON COLUMN pedidos_itens.envio_id        IS 'Esta é a coluna envio id e 
 --Torna a produto_id da tabela estoques uma Foreign Key --
 
 ALTER TABLE estoques    ADD CONSTRAINT produtos_estoques_fk
-FOREIGN KEY                         (produto_id)
-REFERENCES produtos                 (produto_id)
+FOREIGN KEY                            (produto_id)
+REFERENCES produtos                    (produto_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
@@ -202,8 +213,8 @@ NOT DEFERRABLE;
 --Torna a produto_id da tabela pedidos_itens uma Primary Foreign Key --
 
 ALTER TABLE pedidos_itens ADD CONSTRAINT produtos_pedidos_itens_fk
-FOREIGN KEY                         (produto_id)
-REFERENCES produtos                 (produto_id)
+FOREIGN KEY                              (produto_id)
+REFERENCES produtos                      (produto_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
@@ -211,8 +222,8 @@ NOT DEFERRABLE;
 --Torna a loja_id da tabela pedidos uma Foreign Key --
 
 ALTER TABLE pedidos       ADD CONSTRAINT lojas_pedidos_fk
-FOREIGN KEY                                        (loja_id)
-REFERENCES lojas                                   (loja_id)
+FOREIGN KEY                              (loja_id)
+REFERENCES lojas                         (loja_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
@@ -220,8 +231,8 @@ NOT DEFERRABLE;
 --Torna a loja_id da tabela estoques uma Foreign Key --
 
 ALTER TABLE estoques    ADD CONSTRAINT lojas_estoques_fk
-FOREIGN KEY                                        (loja_id)
-REFERENCES lojas                                   (loja_id)
+FOREIGN KEY                            (loja_id)
+REFERENCES lojas                       (loja_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
@@ -229,8 +240,8 @@ NOT DEFERRABLE;
 --Torna a loja_id da tabela envios uma Foreign Key --
 
 ALTER TABLE envios        ADD CONSTRAINT lojas_envios_fk
-FOREIGN KEY                                        (loja_id)
-REFERENCES lojas                                   (loja_id)
+FOREIGN KEY                              (loja_id)
+REFERENCES lojas                         (loja_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
@@ -238,8 +249,8 @@ NOT DEFERRABLE;
 --Torna a cliente_id da tabela pedidos uma Foreign Key --
 
 ALTER TABLE pedidos       ADD CONSTRAINT  clientes_pedidos_fk
-FOREIGN KEY                                         (cliente_id)
-REFERENCES clientes                                 (cliente_id)
+FOREIGN KEY                               (cliente_id)
+REFERENCES clientes                       (cliente_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
@@ -247,8 +258,8 @@ NOT DEFERRABLE;
 --Torna a cliente_id da tabela envios uma Foreign Key --
 
 ALTER TABLE envios        ADD CONSTRAINT  clientes_envios_fk
-FOREIGN KEY                                     (cliente_id)
-REFERENCES clientes                             (cliente_id)
+FOREIGN KEY                               (cliente_id)
+REFERENCES clientes                       (cliente_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
@@ -256,8 +267,8 @@ NOT DEFERRABLE;
 --Torna a envio_id da tabela pedidos_itens uma Foreign Key --
 
 ALTER TABLE pedidos_itens ADD CONSTRAINT envios_pedidos_itens_fk
-FOREIGN KEY                                        (envio_id)
-REFERENCES envios                                  (envio_id)
+FOREIGN KEY                              (envio_id)
+REFERENCES envios                        (envio_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
@@ -265,8 +276,8 @@ NOT DEFERRABLE;
 --Torna a pedido_id da tabela pedidos_itens uma Primary Foreign Key --
 
 ALTER TABLE pedidos_itens ADD CONSTRAINT pedidos_pedidos_itens_fk
-FOREIGN KEY                                           (pedido_id)
-REFERENCES pedidos                                    (pedido_id)
+FOREIGN KEY                              (pedido_id)
+REFERENCES pedidos                       (pedido_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;

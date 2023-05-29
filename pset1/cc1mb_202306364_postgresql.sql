@@ -2,39 +2,39 @@
 
 DROP DATABASE IF EXISTS uvv;
 
--- Derruba outros usuários com nomes de Pedro caso exista algum. --
+-- Derruba outros usuários com nomes de novelli caso exista algum. --
 
-DROP USER IF EXISTS pedro;
+DROP USER IF EXISTS novelli;
 
--- Cria um usuário Pedro com a permissão de criar Banco de Dados, com a senha 123. --
+-- Cria um usuário novelli com a permissão de criar Banco de Dados, com a senha 123. --
 
-CREATE USER pedro WITH 
+CREATE USER novelli WITH 
             CREATEDB
             INHERIT 
             LOGIN 
             PASSWORD '123';
 
--- Cria o Banco de Dados UVV com o proprietário Pedro, conforme as especificações do professor. -- 
+-- Cria o Banco de Dados UVV com o proprietário novelli, conforme as especificações do professor. -- 
 
 CREATE DATABASE uvv WITH
-       owner pedro
+       owner novelli
        TEMPLATE template0
        encoding 'UTF8'
        lc_collate 'pt_BR.UTF-8'
        lc_ctype 'pt_BR.UTF-8'
        allow_connections true;
 
--- Conexão ao banco de dados UVV com o usuário Pedro e a Senha 123 --
+-- Conexão ao banco de dados UVV com o usuário novelli e a Senha 123 --
      
-\connect "dbname=uvv user=pedro password=123";
+\connect "dbname=uvv user=novelli password=123";
 
 -- Cria o esquema lojas, que irá armazenar todas as tabelas necessitadas. --
 
-CREATE SCHEMA lojas AUTHORIZATION pedro;
+CREATE SCHEMA lojas AUTHORIZATION novelli;
 
 -- Configura o schema, conforme as informações do professor. --
 
-ALTER USER pedro
+ALTER USER novelli
 SET SEARCH_PATH TO lojas, "$user", public;
 SET SEARCH_PATH TO lojas, "$user", public;
 

@@ -36,6 +36,7 @@ CREATE SCHEMA lojas AUTHORIZATION pedro;
 
 ALTER USER pedro
 SET SEARCH_PATH TO lojas, "$user", public;
+SET SEARCH_PATH TO lojas, "$user", public;
 
 -- Cria a tabela produtos, a partir do banco de dados uvv e o esquema lojas, com cometários. --
 
@@ -281,3 +282,7 @@ REFERENCES pedidos                       (pedido_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
+
+-- Comentário sobre o banco de dados --
+
+COMMENT ON DATABASE uvv                              IS 'Este é o banco de dados UVV criado conforme as informações do PSET'

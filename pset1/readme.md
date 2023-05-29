@@ -2,7 +2,7 @@
 ### 2.1 Arquivo SQL Power Architect:
 Como principal arquivo aqui guardado, você receberá informações da replicação exata do Projeto de Banco de Dados 
 Lojas UVV, o mesmo que foi utilizado em minha primeira avaliação bimestral. O arquivo poderá ser aberto em um 
-programa como SQL Power Architect, já que foi neste mesmo que eu o criei, abrindo você poderá visualizar  
+programa como SQL Power Architect, já que foi neste mesmo que eu o criei, abrindo você poderá visualizar 
 comentários sobre cada coluna e tabela criada.
 ### 2.2 Arquivo em PDF:
 Também foi realizado a exportação do arquivo Power Architect como PDF para a melhor visualização de usuário que

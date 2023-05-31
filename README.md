@@ -2,7 +2,7 @@
 ###### O pset do Professor Abrantes da Universidade de Vila Velha
 ###### Aluno: Pedro Henrique Novelli Soares
 ###### Professor: Abrantes Araújo Silva Filho
-###### Monitora: Suelen
+###### Monitora: Suellen Miranda Almorin
 ## 1.0 Descrição geral do projeto:
 Este repositório serve para a realização da grande atividade nomeada de Pset produzida pelo usuário 
 e professor *abrantesasf*, aqui será documentado todos os repositórios, subdiretórios e respostas, 

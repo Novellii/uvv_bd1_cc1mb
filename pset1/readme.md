@@ -19,7 +19,7 @@ está totalmente comentado, com diversas Contraints de checagem principalmente d
 é realizada nos seguintes passos:
 - Os bancos de dados com nome UVV são derrubados.
 - Os usuários com nome de novelli são derrubados.
-- É criado um usuário novelli com a permissão de manipular dados.
+- É criado um usuário novelli com todas as permissões.
 - A senha para o usuário novelli foi estabelecida como 123
 - É criado o banco de dados UVV conforme as especificações do professor.
 - Ocorre a conexão com o banco de dados UVV com o usuário e senha estabelecidos.

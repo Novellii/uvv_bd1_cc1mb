@@ -31,10 +31,10 @@ está totalmente comentado, com diversas Contraints de checagem principalmente d
 Por fim, foram realizadas o restante das questões discursivas, sendo fruto de diversos debates entre os
 próprios alunos, pesquisas a diferentes sites, e consulta a alunos de períodos superiores, novamente, todos
 os créditos aos alunos que me ajudaram serão citados no final desta leitura.
-### Não foi feito a implementação no MySQL e MariaDB ### Devido a complexidade da troca de conexão, ainda assim,
-este repositório receberá uma atualização com essa tal implementação, mesmo que não deva valer nota para mim, porém,
-foram realizadas tentativas suficientes para o usuário ter uma opnião própria sobre estas ferramentas, tal opnião e
-comparação dita nas questões discursivas.
+### Não foi feito a implementação no MySQL e MariaDB ### 
+Devido a complexidade da troca de conexão, ainda assim, este repositório receberá uma atualização com essa tal 
+implementação, mesmo que não deva valer nota para mim, porém, foram realizadas tentativas suficientes para o 
+usuário ter uma opnião própria sobre estas ferramentas, tal opnião e comparação dita nas questões discursivas.
 ## 5.0 Créditos.
 - Arthur Morgado. - Após uma tarde na UVV, descobrimos o botão de trocar conexão, além de me ajudar nas discursivas.
 - Arthur de Salles. - Também foi um dos alunos que participou desta tarde, esses dois charás são incríveis.
